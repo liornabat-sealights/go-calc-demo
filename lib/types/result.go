@@ -1,4 +1,4 @@
-package main
+package types
 
 type ResultResponse struct {
 	ValueA float64 `json:"valueA"`

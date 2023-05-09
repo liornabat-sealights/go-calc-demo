@@ -2,13 +2,14 @@ package main
 
 import (
 	"context"
+	"github.com/liornabat-sealights/go-calc-demo/service/server"
 	"os"
 	"os/signal"
 	"syscall"
 )
 
 func setup(shutdown chan struct{}) {
-	s := NewServer()
+	s := server.NewServer()
 	if err := s.Start(context.Background()); err != nil {
 		panic(err)
 	}

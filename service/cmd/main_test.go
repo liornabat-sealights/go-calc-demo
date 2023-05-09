@@ -4,6 +4,9 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/go-resty/resty/v2"
+	"github.com/liornabat-sealights/go-calc-demo/lib/types"
+	main2 "github.com/liornabat-sealights/go-calc-demo/service/pkg/calc"
+	"github.com/liornabat-sealights/go-calc-demo/service/server"
 	"os"
 	"reflect"
 	"testing"
@@ -26,9 +29,9 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
-func call(path string, a, b string) (*ResultResponse, error) {
+func call(path string, a, b string) (*types.ResultResponse, error) {
 	time.Sleep(4 * time.Second)
-	result := &ResultResponse{}
+	result := &types.ResultResponse{}
 	resp, err := NewRestRequest().SetQueryParams(map[string]string{
 		"a": a,
 		"b": b,
@@ -64,7 +67,7 @@ func TestAdd(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Add(tt.args.a, tt.args.b); got != tt.want {
+			if got := main2.Add(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Add() = %v, want %v", got, tt.want)
 			}
 		})
@@ -92,7 +95,7 @@ func TestDivide(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Divide(tt.args.a, tt.args.b); got != tt.want {
+			if got := main2.Divide(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Divide() = %v, want %v", got, tt.want)
 			}
 		})
@@ -121,7 +124,7 @@ func TestMultiply(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Multiply(tt.args.a, tt.args.b); got != tt.want {
+			if got := main2.Multiply(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Multiply() = %v, want %v", got, tt.want)
 			}
 		})
@@ -131,16 +134,16 @@ func TestMultiply(t *testing.T) {
 func TestNewResultResponse(t *testing.T) {
 	tests := []struct {
 		name string
-		want *ResultResponse
+		want *types.ResultResponse
 	}{
 		{
 			name: "TestNewResultResponse",
-			want: &ResultResponse{},
+			want: &types.ResultResponse{},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewResultResponse(); !reflect.DeepEqual(got, tt.want) {
+			if got := types.NewResultResponse(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewResultResponse() = %v, want %v", got, tt.want)
 			}
 		})
@@ -150,16 +153,16 @@ func TestNewResultResponse(t *testing.T) {
 func TestNewServer(t *testing.T) {
 	tests := []struct {
 		name string
-		want *Server
+		want *server.Server
 	}{
 		{
 			name: "TestNewServer",
-			want: &Server{},
+			want: &server.Server{},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewServer(); !reflect.DeepEqual(got, tt.want) {
+			if got := server.NewServer(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewServer() = %v, want %v", got, tt.want)
 			}
 		})
@@ -179,7 +182,7 @@ func TestResultResponse_SetResult(t *testing.T) {
 		name   string
 		fields fields
 		args   args
-		want   *ResultResponse
+		want   *types.ResultResponse
 	}{
 		{
 			name: "TestResultResponse_SetResult",
@@ -191,7 +194,7 @@ func TestResultResponse_SetResult(t *testing.T) {
 			args: args{
 				value: 4,
 			},
-			want: &ResultResponse{
+			want: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 4,
@@ -200,7 +203,7 @@ func TestResultResponse_SetResult(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			r := &ResultResponse{
+			r := &types.ResultResponse{
 				ValueA: tt.fields.ValueA,
 				ValueB: tt.fields.ValueB,
 				Result: tt.fields.Result,
@@ -226,7 +229,7 @@ func TestResultResponse_SetValues(t *testing.T) {
 		name   string
 		fields fields
 		args   args
-		want   *ResultResponse
+		want   *types.ResultResponse
 	}{
 		{
 			name: "TestResultResponse_SetValues",
@@ -238,7 +241,7 @@ func TestResultResponse_SetValues(t *testing.T) {
 			args: args{
 				valueA: 4,
 			},
-			want: &ResultResponse{
+			want: &types.ResultResponse{
 				ValueA: 4,
 				ValueB: 0,
 				Result: 3,
@@ -247,7 +250,7 @@ func TestResultResponse_SetValues(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			r := &ResultResponse{
+			r := &types.ResultResponse{
 				ValueA: tt.fields.ValueA,
 				ValueB: tt.fields.ValueB,
 				Result: tt.fields.Result,
@@ -264,14 +267,14 @@ func TestServer_handel_add(t *testing.T) {
 		name       string
 		a          string
 		b          string
-		wantResult *ResultResponse
+		wantResult *types.ResultResponse
 		wantErr    bool
 	}{
 		{
 			name: "TestServer_handelAdd",
 			a:    "1",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 3,
@@ -282,7 +285,7 @@ func TestServer_handel_add(t *testing.T) {
 			name: "TestServer_handelAdd- bad request",
 			a:    "bad",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 3,
@@ -293,7 +296,7 @@ func TestServer_handel_add(t *testing.T) {
 			name: "TestServer_handelAdd- bad request 2",
 			a:    "1",
 			b:    "bad",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 3,
@@ -304,7 +307,7 @@ func TestServer_handel_add(t *testing.T) {
 			name: "TestServer_handelAdd- bad request 3",
 			a:    "1",
 			b:    "",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 3,
@@ -337,14 +340,14 @@ func TestServer_handel_sub(t *testing.T) {
 		name       string
 		a          string
 		b          string
-		wantResult *ResultResponse
+		wantResult *types.ResultResponse
 		wantErr    bool
 	}{
 		{
 			name: "TestServer_handelsub",
 			a:    "1",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: -1,
@@ -355,7 +358,7 @@ func TestServer_handel_sub(t *testing.T) {
 			name: "TestServer_handelsub- bad request",
 			a:    "bad",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 3,
@@ -388,14 +391,14 @@ func TestServer_handel_mul(t *testing.T) {
 		name       string
 		a          string
 		b          string
-		wantResult *ResultResponse
+		wantResult *types.ResultResponse
 		wantErr    bool
 	}{
 		{
 			name: "TestServer_handelmul",
 			a:    "1",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 2,
@@ -406,7 +409,7 @@ func TestServer_handel_mul(t *testing.T) {
 			name: "TestServer_handelmul- bad request",
 			a:    "bad",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 3,
@@ -439,14 +442,14 @@ func TestServer_handel_div(t *testing.T) {
 		name       string
 		a          string
 		b          string
-		wantResult *ResultResponse
+		wantResult *types.ResultResponse
 		wantErr    bool
 	}{
 		{
 			name: "TestServer_handeldiv",
 			a:    "1",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 0.5,
@@ -457,7 +460,7 @@ func TestServer_handel_div(t *testing.T) {
 			name: "TestServer_handeldiv- bad request",
 			a:    "bad",
 			b:    "2",
-			wantResult: &ResultResponse{
+			wantResult: &types.ResultResponse{
 				ValueA: 1,
 				ValueB: 2,
 				Result: 3,
@@ -589,7 +592,7 @@ func TestSubtract(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Subtract(tt.args.a, tt.args.b); got != tt.want {
+			if got := main2.Subtract(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Subtract() = %v, want %v", got, tt.want)
 			}
 		})

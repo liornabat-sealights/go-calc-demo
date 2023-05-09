@@ -1,10 +1,12 @@
-package main
+package server
 
 import (
 	"context"
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/liornabat-sealights/go-calc-demo/lib/types"
+	"github.com/liornabat-sealights/go-calc-demo/service/pkg/calc"
 	"net/http"
 	"time"
 )
@@ -60,7 +62,7 @@ func (s *Server) handelAdd(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusBadRequest, err.Error())
 	}
-	result := NewResultResponse().SetValues(a, b).SetResult(Add(a, b))
+	result := types.NewResultResponse().SetValues(a, b).SetResult(calc.Add(a, b))
 	return c.JSON(http.StatusOK, result)
 }
 
@@ -69,7 +71,7 @@ func (s *Server) handelSub(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusBadRequest, err.Error())
 	}
-	result := NewResultResponse().SetValues(a, b).SetResult(Subtract(a, b))
+	result := types.NewResultResponse().SetValues(a, b).SetResult(calc.Subtract(a, b))
 	return c.JSON(http.StatusOK, result)
 }
 
@@ -78,7 +80,7 @@ func (s *Server) handelMul(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusBadRequest, err.Error())
 	}
-	result := NewResultResponse().SetValues(a, b).SetResult(Multiply(a, b))
+	result := types.NewResultResponse().SetValues(a, b).SetResult(calc.Multiply(a, b))
 	return c.JSON(http.StatusOK, result)
 }
 
@@ -87,7 +89,7 @@ func (s *Server) handelDiv(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusBadRequest, err.Error())
 	}
-	result := NewResultResponse().SetValues(a, b).SetResult(Divide(a, b))
+	result := types.NewResultResponse().SetValues(a, b).SetResult(calc.Divide(a, b))
 	return c.JSON(http.StatusOK, result)
 }
 
