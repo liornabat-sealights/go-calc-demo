@@ -4,7 +4,5 @@
 
 Run:
 ```bash
-docker build --build-arg SERVICE_NAME=<YourServiceName> --build-arg BRANCH_NAME=<YourBranchName> --build-arg BUILD_NAME=<YourBuildName> --build-arg SEALIGHTS_TOKEN=<YourSealightsKey> . -t repository_name/go-calc-demo
+docker build --build-arg SERVICE_NAME=go-calc-demo --build-arg BRANCH_NAME=main --build-arg BUILD_NAME=<YourBuildName> --build-arg SEALIGHTS_TOKEN=<YourSealightsKey> . -t test/go-calc-demo
 ```
-
-
