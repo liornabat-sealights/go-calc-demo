@@ -11,7 +11,7 @@ import (
 )
 
 func setup(shutdown chan struct{}) {
-	__sealights__.TraceFunc("d1334dab5a7a38cb6a")
+
 	s := server.NewServer()
 	if err := s.Start(context.Background()); err != nil {
 		panic(err)
@@ -20,7 +20,7 @@ func setup(shutdown chan struct{}) {
 
 }
 func main() {
-	__sealights__.StartMainFunc("7084e712c6351d4e37")
+
 	defer func() { __sealights__.EndMainFunc("7084e712c6351d4e37") }()
 	shutdown := make(chan struct{})
 	go setup(shutdown)

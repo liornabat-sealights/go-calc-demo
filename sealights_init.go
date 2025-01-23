@@ -7,6 +7,6 @@ import (
 )
 
 func init() {
-	__sealights__.TraceFunc("9c4067f4b29ad5f161")
+
 	RegisterSealightAgent()
 }
