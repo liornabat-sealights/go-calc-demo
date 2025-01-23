@@ -1,12 +1,11 @@
 module github.com/liornabat-sealights/go-calc-demo
 
-go 1.22.0
-
-toolchain go1.23.4
+go 1.23.4
 
 require (
 	github.com/go-resty/resty/v2 v2.13.1
 	github.com/liornabat-sealights/go-calc-demo/service v0.0.0-20230515080532-061b771da91e
+	github.com/liornabat-sealights/sealights-ginkgo-agent v0.0.0-20250123113551-2b1c79228600
 	github.com/onsi/ginkgo/v2 v2.22.2
 	github.com/onsi/gomega v1.36.2
 )
