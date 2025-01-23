@@ -1,5 +1,7 @@
 package main
 
+import __sealights__ "github.com/liornabat-sealights/go-calc-demo/__sealights__"
+
 import (
 	"crypto/tls"
 	"fmt"
@@ -14,10 +16,12 @@ import (
 var restyClient = resty.New().SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 
 func NewRestRequest() *resty.Request {
+	__sealights__.TraceFunc("8b5c7671ae2dd27123")
 	return restyClient.NewRequest()
 }
 
 func call(path string, a, b string) (*types.ResultResponse, error) {
+	__sealights__.TraceFunc("68a80157ce08b32856")
 	time.Sleep(4 * time.Second)
 	result := &types.ResultResponse{}
 	resp, err := NewRestRequest().SetQueryParams(map[string]string{

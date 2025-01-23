@@ -17,3 +17,7 @@ token.txt
 slgoagent
 slcli
 Taskfile.yml
+/sl
+/slcli
+/Taskfile.yml
+/token.txt
