@@ -42,7 +42,11 @@ var _ = BeforeSuite(func() {
 })
 
 var _ = Describe("Calculator Service", func() {
+	var _ = BeforeEach(
+		func() {
+			fmt.Println("Before each test in the describe")
 
+		})
 	Describe("Basic Calculator Operations", func() {
 		Context("Add Operation", func() {
 			It("should correctly add two numbers", func() {
