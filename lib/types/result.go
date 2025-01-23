@@ -1,7 +1,5 @@
 package types
 
-import __sealights__ "github.com/liornabat-sealights/go-calc-demo/__sealights__"
-
 type ResultResponse struct {
 	ValueA float64 `json:"valueA"`
 	ValueB float64 `json:"valueB"`

@@ -1,7 +1,5 @@
 package main
 
-import __sealights__ "github.com/liornabat-sealights/go-calc-demo/__sealights__"
-
 import (
 	"context"
 	"github.com/liornabat-sealights/go-calc-demo/service/server"
@@ -20,8 +18,6 @@ func setup(shutdown chan struct{}) {
 
 }
 func main() {
-
-	defer func() { __sealights__.EndMainFunc("7084e712c6351d4e37") }()
 	shutdown := make(chan struct{})
 	go setup(shutdown)
 	var gracefulShutdown = make(chan os.Signal, 1)

@@ -4,7 +4,7 @@ go 1.23.4
 
 require (
 	github.com/go-resty/resty/v2 v2.13.1
-	github.com/liornabat-sealights/go-calc-demo/service v0.0.0-20230515080532-061b771da91e
+	github.com/labstack/echo/v4 v4.12.0
 	github.com/liornabat-sealights/sealights-ginkgo-agent v0.0.0-20250123113551-2b1c79228600
 	github.com/onsi/ginkgo/v2 v2.22.2
 	github.com/onsi/gomega v1.36.2
@@ -16,7 +16,6 @@ require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/pprof v0.0.0-20241210010833-40e02aabc2ad // indirect
-	github.com/labstack/echo/v4 v4.12.0 // indirect
 	github.com/labstack/gommon v0.4.2 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
