@@ -37,7 +37,7 @@ package main
 //		"a": a,
 //		"b": b,
 //	}).SetResult(result).
-//		Get("http://localhost:8080" + path)
+//		Get("http://localhost:10000" + path)
 //
 //	if err != nil {
 //		return nil, err

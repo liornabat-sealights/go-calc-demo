@@ -39,7 +39,7 @@ func (s *Server) Start(ctx context.Context) error {
 	s.echoWebServer = e
 	errCh := make(chan error, 1)
 	go func() {
-		errCh <- s.echoWebServer.Start("0.0.0.0:8080")
+		errCh <- s.echoWebServer.Start("0.0.0.0:10000")
 	}()
 
 	select {
@@ -47,7 +47,7 @@ func (s *Server) Start(ctx context.Context) error {
 		if err != nil {
 			return err
 		}
-		e.Logger.Infof("api server started at port 8080")
+		e.Logger.Infof("api server started at port 10000")
 		return nil
 	case <-time.After(1 * time.Second):
 		return nil
