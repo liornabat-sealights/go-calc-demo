@@ -1,4 +1,4 @@
-package main; import __sealights__ "github.com/liornabat-sealights/go-calc-demo/__sealights__"
+package main
 
 import (
 	"crypto/tls"
@@ -15,21 +15,21 @@ import (
 
 var restyClient = resty.New().SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 
-func NewRestRequest() *resty.Request {__sealights__.TraceFunc("8b5c7671ae2dd27123");
+func NewRestRequest() *resty.Request {
 	return restyClient.NewRequest()
 }
 
 // TestMain is a sample to run an endpoint test
-func TestMain(m *testing.M) {__sealights__.StartTestMainFunc("e869415959be0c1886")
+func TestMain(m *testing.M) {
 	shuttingDown := make(chan struct{})
 	go main()
 	time.Sleep(2 * time.Second)
-	code := __sealights__.RunMainTestFunc("e869415959be0c1886",m)
+	code := m.Run()
 	close(shuttingDown)
 	os.Exit(code)
 }
 
-func call(path string, a, b string) (*types.ResultResponse, error) {__sealights__.TraceFunc("68a80157ce08b32856");
+func call(path string, a, b string) (*types.ResultResponse, error) {
 	time.Sleep(4 * time.Second)
 	result := &types.ResultResponse{}
 	resp, err := NewRestRequest().SetQueryParams(map[string]string{
@@ -46,7 +46,7 @@ func call(path string, a, b string) (*types.ResultResponse, error) {__sealights_
 	}
 	return result, nil
 }
-func TestAdd(t *testing.T) {__sealights__.StartTestFunc("05e66b5095ee947f31",t);defer func() { __sealights__.EndTestFunc("05e66b5095ee947f31",t)}();
+func TestAdd(t *testing.T) {
 	type args struct {
 		a float64
 		b float64
@@ -66,7 +66,7 @@ func TestAdd(t *testing.T) {__sealights__.StartTestFunc("05e66b5095ee947f31",t);
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("dcd09299410d71ab9d",t);defer func() { __sealights__.EndTestFunc("dcd09299410d71ab9d",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			if got := main2.Add(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Add() = %v, want %v", got, tt.want)
 			}
@@ -74,7 +74,7 @@ func TestAdd(t *testing.T) {__sealights__.StartTestFunc("05e66b5095ee947f31",t);
 	}
 }
 
-func TestDivide(t *testing.T) {__sealights__.StartTestFunc("fd7c818533008c1c22",t);defer func() { __sealights__.EndTestFunc("fd7c818533008c1c22",t)}();
+func TestDivide(t *testing.T) {
 	type args struct {
 		a float64
 		b float64
@@ -94,7 +94,7 @@ func TestDivide(t *testing.T) {__sealights__.StartTestFunc("fd7c818533008c1c22",
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("800b285f15d3ecf93e",t);defer func() { __sealights__.EndTestFunc("800b285f15d3ecf93e",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			if got := main2.Divide(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Divide() = %v, want %v", got, tt.want)
 			}
@@ -102,7 +102,7 @@ func TestDivide(t *testing.T) {__sealights__.StartTestFunc("fd7c818533008c1c22",
 	}
 }
 
-func TestMultiply(t *testing.T) {__sealights__.StartTestFunc("c098039ece1c1dfab7",t);defer func() { __sealights__.EndTestFunc("c098039ece1c1dfab7",t)}();
+func TestMultiply(t *testing.T) {
 	type args struct {
 		a float64
 		b float64
@@ -123,7 +123,7 @@ func TestMultiply(t *testing.T) {__sealights__.StartTestFunc("c098039ece1c1dfab7
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("9f6b56eb24fc62aba2",t);defer func() { __sealights__.EndTestFunc("9f6b56eb24fc62aba2",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			if got := main2.Multiply(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Multiply() = %v, want %v", got, tt.want)
 			}
@@ -131,7 +131,7 @@ func TestMultiply(t *testing.T) {__sealights__.StartTestFunc("c098039ece1c1dfab7
 	}
 }
 
-func TestNewResultResponse(t *testing.T) {__sealights__.StartTestFunc("05d1b5dbfb4c947611",t);defer func() { __sealights__.EndTestFunc("05d1b5dbfb4c947611",t)}();
+func TestNewResultResponse(t *testing.T) {
 	tests := []struct {
 		name string
 		want *types.ResultResponse
@@ -142,7 +142,7 @@ func TestNewResultResponse(t *testing.T) {__sealights__.StartTestFunc("05d1b5dbf
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("f20b1695e332ec597d",t);defer func() { __sealights__.EndTestFunc("f20b1695e332ec597d",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			if got := types.NewResultResponse(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewResultResponse() = %v, want %v", got, tt.want)
 			}
@@ -150,7 +150,7 @@ func TestNewResultResponse(t *testing.T) {__sealights__.StartTestFunc("05d1b5dbf
 	}
 }
 
-func TestNewServer(t *testing.T) {__sealights__.StartTestFunc("90d11c669d49583bce",t);defer func() { __sealights__.EndTestFunc("90d11c669d49583bce",t)}();
+func TestNewServer(t *testing.T) {
 	tests := []struct {
 		name string
 		want *server.Server
@@ -161,7 +161,7 @@ func TestNewServer(t *testing.T) {__sealights__.StartTestFunc("90d11c669d49583bc
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("0a4bf4490aa468adb7",t);defer func() { __sealights__.EndTestFunc("0a4bf4490aa468adb7",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			if got := server.NewServer(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewServer() = %v, want %v", got, tt.want)
 			}
@@ -169,7 +169,7 @@ func TestNewServer(t *testing.T) {__sealights__.StartTestFunc("90d11c669d49583bc
 	}
 }
 
-func TestResultResponse_SetResult(t *testing.T) {__sealights__.StartTestFunc("632c9b80f239b5833c",t);defer func() { __sealights__.EndTestFunc("632c9b80f239b5833c",t)}();
+func TestResultResponse_SetResult(t *testing.T) {
 	type fields struct {
 		ValueA float64
 		ValueB float64
@@ -202,7 +202,7 @@ func TestResultResponse_SetResult(t *testing.T) {__sealights__.StartTestFunc("63
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("b7803137fbe8a6b3eb",t);defer func() { __sealights__.EndTestFunc("b7803137fbe8a6b3eb",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			r := &types.ResultResponse{
 				ValueA: tt.fields.ValueA,
 				ValueB: tt.fields.ValueB,
@@ -215,7 +215,7 @@ func TestResultResponse_SetResult(t *testing.T) {__sealights__.StartTestFunc("63
 	}
 }
 
-func TestResultResponse_SetValues(t *testing.T) {__sealights__.StartTestFunc("bd3aa86fe2965d4ed6",t);defer func() { __sealights__.EndTestFunc("bd3aa86fe2965d4ed6",t)}();
+func TestResultResponse_SetValues(t *testing.T) {
 	type fields struct {
 		ValueA float64
 		ValueB float64
@@ -249,7 +249,7 @@ func TestResultResponse_SetValues(t *testing.T) {__sealights__.StartTestFunc("bd
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("7fc810467cdab9b2ca",t);defer func() { __sealights__.EndTestFunc("7fc810467cdab9b2ca",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			r := &types.ResultResponse{
 				ValueA: tt.fields.ValueA,
 				ValueB: tt.fields.ValueB,
@@ -262,7 +262,7 @@ func TestResultResponse_SetValues(t *testing.T) {__sealights__.StartTestFunc("bd
 	}
 }
 
-func TestServer_handel_add(t *testing.T) {__sealights__.StartTestFunc("970a65b27cd916faaf",t);defer func() { __sealights__.EndTestFunc("970a65b27cd916faaf",t)}();
+func TestServer_handel_add(t *testing.T) {
 	tests := []struct {
 		name       string
 		a          string
@@ -316,7 +316,7 @@ func TestServer_handel_add(t *testing.T) {__sealights__.StartTestFunc("970a65b27
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("788cc8ec7197e700e2",t);defer func() { __sealights__.EndTestFunc("788cc8ec7197e700e2",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			resp, err := call("/add", tt.a, tt.b)
 			if tt.wantErr {
 				if err == nil {
@@ -335,7 +335,7 @@ func TestServer_handel_add(t *testing.T) {__sealights__.StartTestFunc("970a65b27
 		})
 	}
 }
-func TestServer_handel_sub(t *testing.T) {__sealights__.StartTestFunc("1c0d883902ce5e1e3d",t);defer func() { __sealights__.EndTestFunc("1c0d883902ce5e1e3d",t)}();
+func TestServer_handel_sub(t *testing.T) {
 	tests := []struct {
 		name       string
 		a          string
@@ -367,7 +367,7 @@ func TestServer_handel_sub(t *testing.T) {__sealights__.StartTestFunc("1c0d88390
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("767d8da52e948ca5db",t);defer func() { __sealights__.EndTestFunc("767d8da52e948ca5db",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			resp, err := call("/sub", tt.a, tt.b)
 			if tt.wantErr {
 				if err == nil {
@@ -386,7 +386,7 @@ func TestServer_handel_sub(t *testing.T) {__sealights__.StartTestFunc("1c0d88390
 		})
 	}
 }
-func TestServer_handel_mul(t *testing.T) {__sealights__.StartTestFunc("629400591a996b1bd0",t);defer func() { __sealights__.EndTestFunc("629400591a996b1bd0",t)}();
+func TestServer_handel_mul(t *testing.T) {
 	tests := []struct {
 		name       string
 		a          string
@@ -418,7 +418,7 @@ func TestServer_handel_mul(t *testing.T) {__sealights__.StartTestFunc("629400591
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("4d34211a152e554eb0",t);defer func() { __sealights__.EndTestFunc("4d34211a152e554eb0",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			resp, err := call("/mul", tt.a, tt.b)
 			if tt.wantErr {
 				if err == nil {
@@ -437,7 +437,7 @@ func TestServer_handel_mul(t *testing.T) {__sealights__.StartTestFunc("629400591
 		})
 	}
 }
-func TestServer_handel_div(t *testing.T) {__sealights__.StartTestFunc("f110d8fd40451fd579",t);defer func() { __sealights__.EndTestFunc("f110d8fd40451fd579",t)}();
+func TestServer_handel_div(t *testing.T) {
 	tests := []struct {
 		name       string
 		a          string
@@ -469,7 +469,7 @@ func TestServer_handel_div(t *testing.T) {__sealights__.StartTestFunc("f110d8fd4
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("199dc87ee20e349a6f",t);defer func() { __sealights__.EndTestFunc("199dc87ee20e349a6f",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			resp, err := call("/div", tt.a, tt.b)
 			if tt.wantErr {
 				if err == nil {
@@ -571,7 +571,7 @@ func TestServer_handel_div(t *testing.T) {__sealights__.StartTestFunc("f110d8fd4
 //		}
 //	}
 
-func TestSubtract(t *testing.T) {__sealights__.StartTestFunc("e89793a2496229b1ad",t);defer func() { __sealights__.EndTestFunc("e89793a2496229b1ad",t)}();
+func TestSubtract(t *testing.T) {
 	type args struct {
 		a float64
 		b float64
@@ -591,7 +591,7 @@ func TestSubtract(t *testing.T) {__sealights__.StartTestFunc("e89793a2496229b1ad
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("087b72f1f091a55de4",t);defer func() { __sealights__.EndTestFunc("087b72f1f091a55de4",t)}();
+		t.Run(tt.name, func(t *testing.T) {
 			if got := main2.Subtract(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Subtract() = %v, want %v", got, tt.want)
 			}
