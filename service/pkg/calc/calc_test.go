@@ -1,11 +1,11 @@
-package calc
+package calc; import __sealights__ "github.com/liornabat-sealights/go-calc-demo/__sealights__"
 
 import (
 	"math"
 	"testing"
 )
 
-func TestAdd(t *testing.T) {
+func TestAdd(t *testing.T) {__sealights__.StartTestFunc("8f45c4ad6e8717d5e0",t);defer func() { __sealights__.EndTestFunc("8f45c4ad6e8717d5e0",t)}();
 	type args struct {
 		a float64
 		b float64
@@ -38,7 +38,7 @@ func TestAdd(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
+		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("e00a8ca51ea005f210",t);defer func() { __sealights__.EndTestFunc("e00a8ca51ea005f210",t)}();
 			if got := Add(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Add() = %v, want %v", got, tt.want)
 			}
@@ -46,7 +46,7 @@ func TestAdd(t *testing.T) {
 	}
 }
 
-func TestSubtract(t *testing.T) {
+func TestSubtract(t *testing.T) {__sealights__.StartTestFunc("bf8538f0539d96083e",t);defer func() { __sealights__.EndTestFunc("bf8538f0539d96083e",t)}();
 	type args struct {
 		a float64
 		b float64
@@ -93,7 +93,7 @@ func TestSubtract(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
+		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("246099bf07ffff38ee",t);defer func() { __sealights__.EndTestFunc("246099bf07ffff38ee",t)}();
 			if got := Subtract(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Subtract() = %v, want %v", got, tt.want)
 			}
@@ -101,7 +101,7 @@ func TestSubtract(t *testing.T) {
 	}
 }
 
-func TestMultiply(t *testing.T) {
+func TestMultiply(t *testing.T) {__sealights__.StartTestFunc("295b24774435089f36",t);defer func() { __sealights__.EndTestFunc("295b24774435089f36",t)}();
 	type args struct {
 		a float64
 		b float64
@@ -139,7 +139,7 @@ func TestMultiply(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
+		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("62481d249b1df9712d",t);defer func() { __sealights__.EndTestFunc("62481d249b1df9712d",t)}();
 			if got := Multiply(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Multiply() = %v, want %v", got, tt.want)
 			}
@@ -147,7 +147,7 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
-func TestDivide(t *testing.T) {
+func TestDivide(t *testing.T) {__sealights__.StartTestFunc("240a468da383b61b64",t);defer func() { __sealights__.EndTestFunc("240a468da383b61b64",t)}();
 	type args struct {
 		a float64
 		b float64
@@ -185,7 +185,7 @@ func TestDivide(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
+		t.Run(tt.name, func(t *testing.T) {__sealights__.StartTestFunc("618460480ff3cb4959",t);defer func() { __sealights__.EndTestFunc("618460480ff3cb4959",t)}();
 			if got := Divide(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("Divide() = %v, want %v", got, tt.want)
 			}
