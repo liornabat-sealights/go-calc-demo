@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/liornabat-sealights/go-calc-demo/lib/types"
-	"github.com/liornabat-sealights/go-calc-demo/service/pkg/calc"
+	"github.com/liornabat-sealights/go-calc-demo/src/lib/types"
+	"github.com/liornabat-sealights/go-calc-demo/src/service/pkg/calc"
 	"net/http"
 	"time"
 )
